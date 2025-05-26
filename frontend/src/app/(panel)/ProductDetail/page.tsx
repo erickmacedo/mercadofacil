@@ -8,32 +8,12 @@ import {
   ScrollView, 
   FlatList, 
   TextInput, 
-  Alert // Import Alert
+  Alert
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useRouter, useLocalSearchParams, Stack } from 'expo-router'; // Import from expo-router
-
-// Cores
-const COLORS = {
-  primary: '#8C1D18',
-  secondary: '#4A4A4A',
-  accent: '#E0E0E0',
-  white: '#FFFFFF',
-  lightGray: '#F5F5F5',
-  darkGray: '#A0A0A0',
-  background: '#F8F8F8',
-};
-
-// Fontes
-const FONTS = {
-  h1: { fontSize: 20, fontWeight: 'bold' as 'bold', color: COLORS.secondary },
-  h2: { fontSize: 18, fontWeight: '600' as '600', color: COLORS.secondary },
-  body: { fontSize: 14, color: COLORS.secondary },
-  caption: { fontSize: 12, color: COLORS.darkGray },
-  button: { fontSize: 14, fontWeight: 'bold' as 'bold', color: COLORS.white },
-  price: { fontSize: 18, fontWeight: 'bold' as 'bold', color: COLORS.secondary },
-  marketName: { fontSize: 16, fontWeight: '500' as '500', color: COLORS.secondary },
-};
+import { useRouter, useLocalSearchParams, Stack } from 'expo-router';
+import COLORS from '@/constants/colors';
+import FONTS from '@/constants/fonts';
 
 // Tipagem para os dados
 interface ProductDetails {
@@ -131,7 +111,7 @@ const ProductDetailScreen: React.FC = () => {
       <View style={styles.productDetailContainer}>
         <Image source={{ uri: product.image }} style={styles.productImage} resizeMode="contain" />
         <View style={styles.productInfo}>
-          <Text style={FONTS.h1}>{product.name}</Text>
+          <Text style={FONTS.h1Dark}>{product.name}</Text>
           <Text style={FONTS.caption}>Código: {product.code}</Text>
           <Text style={FONTS.caption}>Quantidade: {product.quantity}</Text>
           <Text style={FONTS.caption}>Tipo: {product.type}</Text>
@@ -142,7 +122,7 @@ const ProductDetailScreen: React.FC = () => {
       </View>
 
       {/* Lista de Mercados Próximos */}
-      <Text style={[FONTS.h2, styles.sectionTitle]}>Mercados Próximos</Text>
+      <Text style={[FONTS.h3, styles.sectionTitle]}>Mercados Próximos</Text>
       <FlatList<MarketPrice>
         data={nearbyMarkets}
         renderItem={renderMarketItem}
@@ -259,4 +239,3 @@ const styles = StyleSheet.create({
 });
 
 export default ProductDetailScreen;
-

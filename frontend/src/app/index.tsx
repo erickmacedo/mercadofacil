@@ -14,33 +14,10 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter, Link } from 'expo-router';
+import COLORS from '@/constants/colors';
+import FONTS from '@/constants/fonts';
 
-// Cores
-const COLORS = {
-  primary: '#8C1D18',
-  secondary: '#4A4A4A',
-  accent: '#E0E0E0',
-  white: '#FFFFFF',
-  lightGray: '#F5F5F5',
-  link: '#B71C1C',
-  guestButtonText: '#616161',
-  guestButtonBorder: '#BDBDBD',
-  animatedText: '#D32F2F',
-};
-
-// Fontes
-const FONTS = {
-  h1: { fontSize: 28, fontWeight: 'bold' as 'bold', color: COLORS.white },
-  h2: { fontSize: 16, color: COLORS.white, marginBottom: 30, opacity: 0.8 },
-  label: { fontSize: 14, color: COLORS.secondary, marginBottom: 5, marginLeft: 5 },
-  input: { fontSize: 16, color: COLORS.secondary },
-  button: { fontSize: 18, fontWeight: 'bold' as 'bold', color: COLORS.white },
-  link: { fontSize: 14, color: COLORS.link, fontWeight: '500' as '500' },
-  guestButton: { fontSize: 14, fontWeight: '500' as '500', color: COLORS.guestButtonText },
-  animatedText: { fontSize: 14, fontWeight: 'bold' as 'bold', color: COLORS.animatedText, textAlign: 'center' as 'center' },
-};
-
-const LoginScreen: React.FC = () => {
+const index: React.FC = () => {
   const router = useRouter();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -83,7 +60,7 @@ const LoginScreen: React.FC = () => {
     >
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <LinearGradient
-          colors={['#6A1310', COLORS.primary]}
+          colors={[COLORS.primaryDark, COLORS.primary]}
           style={styles.header}
         >
           <Image 
@@ -137,7 +114,7 @@ const LoginScreen: React.FC = () => {
                 <Ionicons name={rememberMe ? "checkbox" : "square-outline"} size={22} color={COLORS.primary} />
                 <Text style={styles.checkboxLabel}>Lembrar-se de mim</Text>
               </TouchableOpacity>
-              <Link href="/(auth)/forgot-password" asChild> 
+              <Link href="/(auth)/forgot-password" asChild>
                  <TouchableOpacity>
                    <Text style={FONTS.link}>Esqueci a senha</Text>
                  </TouchableOpacity>
@@ -238,7 +215,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    
+    marginBottom: 30, // Space before action buttons
   },
   checkboxContainer: {
     flexDirection: 'row',
@@ -293,5 +270,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
-
+export default index;

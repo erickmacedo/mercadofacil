@@ -10,28 +10,9 @@ import {
   FlatList 
 } from 'react-native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { useRouter, Link } from 'expo-router'; // Import from expo-router
-
-// Cores
-const COLORS = {
-  primary: '#8C1D18',
-  secondary: '#4A4A4A',
-  accent: '#E0E0E0',
-  white: '#FFFFFF',
-  lightGray: '#F5F5F5',
-  darkGray: '#A0A0A0',
-  background: '#FFFFFF',
-};
-
-// Fontes
-const FONTS = {
-  h1: { fontSize: 22, fontWeight: 'bold' as 'bold', color: COLORS.secondary },
-  h2: { fontSize: 18, fontWeight: '600' as '600', color: COLORS.secondary },
-  body: { fontSize: 14, color: COLORS.secondary },
-  caption: { fontSize: 12, color: COLORS.darkGray },
-  button: { fontSize: 14, fontWeight: 'bold' as 'bold', color: COLORS.primary },
-  price: { fontSize: 16, fontWeight: 'bold' as 'bold', color: COLORS.primary },
-};
+import { useRouter, Link } from 'expo-router';
+import COLORS from '@/constants/colors';
+import FONTS from '@/constants/fonts';
 
 // Tipagem para os dados de produto
 interface Product {
@@ -60,14 +41,14 @@ const HomeScreen: React.FC = () => {
 
   const renderProductCard = ({ item }: { item: Product }) => (
     // Use Link for navigation to product details
-    <Link href={{ pathname: '/(panel)/ProductDetail/page', params: { productId: item.id } }} asChild>
+    <Link href={{ pathname: '/(panel)/ProductDetail', params: { productId: item.id } }} asChild>
       <TouchableOpacity style={styles.productCard}>
         <Image source={{ uri: item.image }} style={styles.productImage} resizeMode="contain" />
         <Text style={styles.productName} numberOfLines={2}>{item.name}</Text>
         <Text style={FONTS.price}>R$ {item.price}</Text>
         {/* O botão de comparar agora está dentro do Link */}
         <View style={styles.compareButton}>
-          <Text style={FONTS.button}>Compare já</Text>
+          <Text style={FONTS.buttonSecondary}>Compare já</Text>
         </View>
       </TouchableOpacity>
     </Link>
@@ -91,7 +72,7 @@ const HomeScreen: React.FC = () => {
       </View>
 
       {/* Saudação */}
-      <Text style={[FONTS.h1, styles.greeting]}>Olá Antonio, Boa Noite!</Text>
+      <Text style={[FONTS.h1Dark, styles.greeting]}>Olá Antonio, Boa Noite!</Text>
 
       {/* Barra de Pesquisa */}
       <View style={styles.searchContainer}>
@@ -106,7 +87,7 @@ const HomeScreen: React.FC = () => {
 
       {/* Ícones de Ação */}
       <View style={styles.actionIconsContainer}>
-        <Link href="/(panel)/ShoppingList" asChild>
+        <Link href="/(panel)/ShoppingList/page" asChild>
           <TouchableOpacity style={styles.actionIconBox}>
             <MaterialCommunityIcons name="format-list-checks" size={35} color={COLORS.primary} />
             <Text style={styles.actionIconText}>Lista de Compras</Text>
@@ -123,11 +104,11 @@ const HomeScreen: React.FC = () => {
 
       {/* Seção Recomendados */}
       <View style={styles.sectionHeader}>
-        <Text style={FONTS.h2}>Recomendados</Text>
+        <Text style={FONTS.h3}>Recomendados</Text>
         {/* Adapte o link para a tela de todos os recomendados */}
         <Link href="/(panel)/recommended" asChild>
           <TouchableOpacity>
-            <Text style={FONTS.button}>Ver todos</Text>
+            <Text style={FONTS.buttonSecondary}>Ver todos</Text>
           </TouchableOpacity>
         </Link>
       </View>
@@ -142,11 +123,11 @@ const HomeScreen: React.FC = () => {
 
       {/* Seção Cesta Básica */}
       <View style={styles.sectionHeader}>
-        <Text style={FONTS.h2}>Cesta Básica</Text>
+        <Text style={FONTS.h3}>Cesta Básica</Text>
          {/* Adapte o link para a tela de cesta básica */}
         <Link href="/(panel)/basic-basket" asChild>
           <TouchableOpacity>
-            <Text style={FONTS.button}>Ver todos</Text>
+            <Text style={FONTS.buttonSecondary}>Ver todos</Text>
           </TouchableOpacity>
         </Link>
       </View>
@@ -271,4 +252,3 @@ const styles = StyleSheet.create({
 });
 
 export default HomeScreen;
-
