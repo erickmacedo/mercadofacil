@@ -63,12 +63,12 @@ const index: React.FC = () => {
           colors={[COLORS.primaryDark, COLORS.primary]}
           style={styles.header}
         >
-          <Image 
-            source={{ uri: 'https://via.placeholder.com/150x60?text=Logo+App' }} 
+           <Image 
+            source={require('../../assets/images/iconimg.png')} 
             style={styles.logo} 
             resizeMode="contain" 
           />
-          <Text style={FONTS.h1}>Login</Text>
+            
           <Text style={FONTS.h2}>Sua economia começa aqui</Text>
         </LinearGradient>
 
