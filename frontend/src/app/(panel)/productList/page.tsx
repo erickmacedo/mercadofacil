@@ -12,7 +12,6 @@ import {
 } from 'react-native';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { useRouter, Stack, useLocalSearchParams } from 'expo-router';
-import Slider from '@react-native-community/slider'; // Nota: Pode ser necessário instalar esta dependência
 import COLORS from '@/constants/colors';
 import FONTS from '@/constants/fonts';
 
@@ -150,17 +149,7 @@ const ProductListScreen: React.FC = () => {
         </View>
         
         {/* NOTA: Em produção, este slider enviaria os valores para o backend filtrar */}
-        <Slider
-          style={styles.slider}
-          minimumValue={0}
-          maximumValue={50}
-          step={0.5}
-          value={priceRange[1]}
-          onValueChange={(value) => setPriceRange([priceRange[0], value])}
-          minimumTrackTintColor={COLORS.primary}
-          maximumTrackTintColor={COLORS.mediumGray}
-          thumbTintColor={COLORS.primary}
-        />
+      
         
         <View style={styles.filterButtonsContainer}>
           <TouchableOpacity 
