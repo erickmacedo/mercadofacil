@@ -41,7 +41,7 @@ const HomeScreen: React.FC = () => {
 
   const renderProductCard = ({ item }: { item: Product }) => (
     // Use Link for navigation to product details
-    <Link href={{ pathname: '/(panel)/ProductDetail', params: { productId: item.id } }} asChild>
+    <Link href={{ pathname: '/(panel)/ProductDetail/page', params: { productId: item.id } }} asChild>
       <TouchableOpacity style={styles.productCard}>
         <Image source={{ uri: item.image }} style={styles.productImage} resizeMode="contain" />
         <Text style={styles.productName} numberOfLines={2}>{item.name}</Text>
@@ -64,7 +64,7 @@ const HomeScreen: React.FC = () => {
         {/* </TouchableOpacity> */}
         <View style={{width: 30}} />{/* Placeholder for alignment */}
         {/* Exemplo: Botão para perfil */}
-        <Link href="/(panel)/profile" asChild> 
+        <Link href="/(panel)/profile/page" asChild> 
           <TouchableOpacity>
             <Ionicons name="person-circle-outline" size={30} color={COLORS.secondary} />
           </TouchableOpacity>
@@ -106,7 +106,7 @@ const HomeScreen: React.FC = () => {
       <View style={styles.sectionHeader}>
         <Text style={FONTS.h3}>Recomendados</Text>
         {/* Adapte o link para a tela de todos os recomendados */}
-        <Link href="/(panel)/recommended" asChild>
+        <Link href="/(panel)/ProductDetail/page" asChild>
           <TouchableOpacity>
             <Text style={FONTS.buttonSecondary}>Ver todos</Text>
           </TouchableOpacity>
@@ -125,7 +125,7 @@ const HomeScreen: React.FC = () => {
       <View style={styles.sectionHeader}>
         <Text style={FONTS.h3}>Cesta Básica</Text>
          {/* Adapte o link para a tela de cesta básica */}
-        <Link href="/(panel)/basic-basket" asChild>
+        <Link href="/(panel)/ProductDetail/page" asChild>
           <TouchableOpacity>
             <Text style={FONTS.buttonSecondary}>Ver todos</Text>
           </TouchableOpacity>

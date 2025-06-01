@@ -114,7 +114,7 @@ const index: React.FC = () => {
                 <Ionicons name={rememberMe ? "checkbox" : "square-outline"} size={22} color={COLORS.primary} />
                 <Text style={styles.checkboxLabel}>Lembrar-se de mim</Text>
               </TouchableOpacity>
-              <Link href="/(auth)/forgot-password" asChild>
+              <Link href="/(auth)/forgotPassword/page" asChild>
                  <TouchableOpacity>
                    <Text style={FONTS.link}>Esqueci a senha</Text>
                  </TouchableOpacity>
