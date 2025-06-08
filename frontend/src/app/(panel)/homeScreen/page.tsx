@@ -94,7 +94,7 @@ const HomeScreen: React.FC = () => {
           </TouchableOpacity>
         </Link>
         {/* Adapte este link se tiver uma tela específica de comparação */}
-        <Link href="/(panel)/compare" asChild>
+        <Link href="/(panel)/CategoriesScreen/page" asChild>
           <TouchableOpacity style={styles.actionIconBox}>
             <MaterialCommunityIcons name="compare" size={35} color={COLORS.primary} />
             <Text style={styles.actionIconText}>Comparar Produtos</Text>
@@ -105,8 +105,7 @@ const HomeScreen: React.FC = () => {
       {/* Seção Recomendados */}
       <View style={styles.sectionHeader}>
         <Text style={FONTS.h3}>Recomendados</Text>
-        {/* Adapte o link para a tela de todos os recomendados */}
-        <Link href="/(panel)/ProductDetail/page" asChild>
+        <Link href="/(panel)/productList/page" asChild>
           <TouchableOpacity>
             <Text style={FONTS.buttonSecondary}>Ver todos</Text>
           </TouchableOpacity>
@@ -124,7 +123,6 @@ const HomeScreen: React.FC = () => {
       {/* Seção Cesta Básica */}
       <View style={styles.sectionHeader}>
         <Text style={FONTS.h3}>Cesta Básica</Text>
-         {/* Adapte o link para a tela de cesta básica */}
         <Link href="/(panel)/ProductDetail/page" asChild>
           <TouchableOpacity>
             <Text style={FONTS.buttonSecondary}>Ver todos</Text>

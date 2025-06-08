@@ -41,6 +41,11 @@ export default function MainLayout() {
         name="(panel)/productList/page"
         options={{ headerShown: false }}
       />
+
+       <Stack.Screen
+        name="(panel)/CategoriesScreen/page"
+        options={{ headerShown: false }}
+      />
       
 
     </Stack>
