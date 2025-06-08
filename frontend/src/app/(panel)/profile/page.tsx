@@ -263,7 +263,7 @@ const ProfileScreen: React.FC = () => {
           </TouchableOpacity>
         </View>
         
-        {/* Botão de Logout */}Alert
+        {/* Botão de Logout */}
         <TouchableOpacity style={styles.logoutButton} onPress={() => router.replace('/')}>
           <Ionicons name="log-out-outline" size={20} color={COLORS.white} style={styles.logoutIcon} />
           <Text style={FONTS.button}>Sair</Text>

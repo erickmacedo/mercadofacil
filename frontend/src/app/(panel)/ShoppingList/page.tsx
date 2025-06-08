@@ -20,7 +20,7 @@ interface ItemListaCompras {
   nome: string;
   preco: string;
   precoDistancia: string;
-  imagem: string;
+  imagem: any;
 }
 
 interface DadosListaCompras {
@@ -36,21 +36,21 @@ interface MelhorOpcao {
 // Dados de exemplo
 const dadosListaCompras: DadosListaCompras = {
   'Produtos limpeza': [
-    { id: 'p1', nome: 'DETERGENTE TÊ', preco: '1,49', precoDistancia: '4,58', imagem: 'https://via.placeholder.com/50?text=Det' },
-    { id: 'p2', nome: 'DESINFETANTE UAU', preco: '8,79', precoDistancia: '15,99', imagem: 'https://via.placeholder.com/50?text=Desinf' },
-    { id: 'p3', nome: 'SABÃO EM PÓ OMO', preco: '3,60', precoDistancia: '5,47', imagem: 'https://via.placeholder.com/50?text=Omo' },
+    { id: 'p1', nome: 'DETERGENTE TÊ', preco: '1,49', precoDistancia: '4,58', imagem: require('@/assets/images/ShoppingList/DETERGENTE_TE_50x50.png') },
+    { id: 'p2', nome: 'DESINFETANTE UAU', preco: '8,79', precoDistancia: '15,99', imagem: require('@/assets/images/ShoppingList/DESINFETANTE_UAU_50x50.png') },
+    { id: 'p3', nome: 'SABÃO EM PÓ OMO', preco: '3,60', precoDistancia: '5,47', imagem: require('@/assets/images/ShoppingList/SABAO_OMO_50x50.png') },
   ],
   'Cervejas': [
-    { id: 'p4', nome: 'HEINEKEN 350ML', preco: '7,99', precoDistancia: '10,48', imagem: 'https://via.placeholder.com/50?text=Hein' },
-    { id: 'p5', nome: 'AMSTEL 600ML', preco: '7,49', precoDistancia: '10,43', imagem: 'https://via.placeholder.com/50?text=Amst' },
+    { id: 'p4', nome: 'HEINEKEN 350ML', preco: '7,99', precoDistancia: '10,48', imagem: require('@/assets/images/ShoppingList/HEINEKEN_350ML_50x50.png') },
+    { id: 'p5', nome: 'AMSTEL 600ML', preco: '7,49', precoDistancia: '10,43', imagem: require('@/assets/images/ShoppingList/AMSTEL_600ML_50x50.png') },
   ],
   'Carnes': [
-    { id: 'p6', nome: 'ALCATRA', preco: '25,99', precoDistancia: '28,49', imagem: 'https://via.placeholder.com/50?text=Alca' },
+    { id: 'p6', nome: 'ALCATRA', preco: '25,99', precoDistancia: '28,49', imagem: require('@/assets/images/ShoppingList/ALCATRA_50x50.png') },
   ],
 };
 
 const melhorOpcao: MelhorOpcao = {
-  logoLoja: 'https://via.placeholder.com/80x30?text=Assai',
+  logoLoja: '@/assets/images/product_detail/assaiLogo',
   quantidadeItensPromocao: 5,
   total: '55,35',
 };
@@ -95,7 +95,7 @@ const TelaListaCompras: React.FC = () => {
 
   const renderizarItemLista = ({ item }: { item: ItemListaCompras }) => (
     <View style={estilos.containerItemLista}>
-      <Image source={{ uri: item.imagem }} style={estilos.imagemItem} resizeMode="contain" />
+      <Image source={ item.imagem } style={estilos.imagemItem} resizeMode="contain" />
       <View style={estilos.infoItem}>
         <Text style={FONTS.body} numberOfLines={1}>{item.nome}</Text>
       </View>
@@ -179,7 +179,6 @@ const TelaListaCompras: React.FC = () => {
         {/* Seção melhor opção - só aparece quando há itens */}
         {!listaEstaVazia && (
           <View style={estilos.containerMelhorOpcao}>
-            <Text style={FONTS.bestOptionText}>R$ MELHOR OPÇÃO R$</Text>
             <View style={estilos.detalhesMelhorOpcao}>
               <Image source={{ uri: melhorOpcao.logoLoja }} style={estilos.logoLoja} resizeMode="contain" />
               <View style={estilos.infoMelhorOpcao}>

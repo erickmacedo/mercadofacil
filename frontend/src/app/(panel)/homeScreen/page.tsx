@@ -14,25 +14,34 @@ import { useRouter, Link } from 'expo-router';
 import COLORS from '@/constants/colors';
 import FONTS from '@/constants/fonts';
 
+
+
+
 // Tipagem para os dados de produto
 interface Product {
   id: string;
   name: string;
   price: string;
-  image: string;
+  image: any;
 }
+const skol_lata = require("../../../../assets/images/products_icons/skol_lata.png");
+const heineken_lata = require("../../../../assets/images/products_icons/heineken_lata.png");
+const brahma_lata = require("../../../../assets/images/products_icons/brahma_lata.png");
+const arroz_5kg = require("../../../../assets/images/products_icons/arroz_5kg.png");
+const feijao_carioca_1kg = require("../../../../assets/images/products_icons/feijao_carioca_1kg.png");
+const oleo_soja_900ml = require("../../../../assets/images/products_icons/oleo_soja_900ml.png");
 
 // Dados de exemplo
 const recommendedProducts: Product[] = [
-  { id: '1', name: 'Cerveja Lata Skol', price: '3,09', image: 'https://via.placeholder.com/100?text=Cerveja1' },
-  { id: '2', name: 'Cerveja Lata Heineken', price: '3,09', image: 'https://via.placeholder.com/100?text=Cerveja2' },
-  { id: '3', name: 'Cerveja Lata Brahma', price: '3,09', image: 'https://via.placeholder.com/100?text=Cerveja3' },
+  { id: '1', name: 'Cerveja Lata Skol', price: '3,09', image: skol_lata },
+  { id: '2', name: 'Cerveja Lata Heineken', price: '3,09', image: heineken_lata },
+  { id: '3', name: 'Cerveja Lata Brahma', price: '3,09', image: brahma_lata },
 ];
 
 const basicBasketProducts: Product[] = [
-  { id: '4', name: 'Arroz Tipo 1 5kg', price: '25,99', image: 'https://via.placeholder.com/100?text=Arroz' },
-  { id: '5', name: 'Feijão Carioca 1kg', price: '8,49', image: 'https://via.placeholder.com/100?text=Feijao' },
-  { id: '6', name: 'Óleo de Soja 900ml', price: '7,99', image: 'https://via.placeholder.com/100?text=Oleo' },
+  { id: '4', name: 'Arroz Tipo 1 5kg', price: '25,99', image: arroz_5kg },
+  { id: '5', name: 'Feijão Carioca 1kg', price: '8,49', image: feijao_carioca_1kg },
+  { id: '6', name: 'Óleo de Soja 900ml', price: '7,99', image:oleo_soja_900ml },
 ];
 
 // Renomeie este componente para 'Page' ou use como default export em '(panel)/homeScreen/page.tsx'
@@ -43,7 +52,7 @@ const HomeScreen: React.FC = () => {
     // Use Link for navigation to product details
     <Link href={{ pathname: '/(panel)/ProductDetail/page', params: { productId: item.id } }} asChild>
       <TouchableOpacity style={styles.productCard}>
-        <Image source={{ uri: item.image }} style={styles.productImage} resizeMode="contain" />
+        <Image source={item.image } style={styles.productImage} resizeMode="contain" />
         <Text style={styles.productName} numberOfLines={2}>{item.name}</Text>
         <Text style={FONTS.price}>R$ {item.price}</Text>
         {/* O botão de comparar agora está dentro do Link */}
@@ -123,7 +132,7 @@ const HomeScreen: React.FC = () => {
       {/* Seção Cesta Básica */}
       <View style={styles.sectionHeader}>
         <Text style={FONTS.h3}>Cesta Básica</Text>
-        <Link href="/(panel)/ProductDetail/page" asChild>
+        <Link href="/(panel)/productList/page" asChild>
           <TouchableOpacity>
             <Text style={FONTS.buttonSecondary}>Ver todos</Text>
           </TouchableOpacity>

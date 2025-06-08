@@ -42,15 +42,23 @@ interface ProductDetails {
   code: string;
   quantity: string;
   type: string;
-  image: string;
+  image: any;
 }
 
 interface MarketPrice {
   id: string;
   name: string;
   price: string;
-  logo: string;
+  logo: any;
 }
+
+const assaiLogo = require('../../../../assets/images/product_detail/Assai_logo_100x100.png');
+const atakarejoLogo = require('../../../../assets/images/product_detail/Atakarejo_logo_100x100.png');
+const gbarbosaLogo = require('../../../../assets/images/product_detail/GBarbosa_logo_100x100.png');
+const extraLogo = require('../../../../assets/images/product_detail/Extra_logo_100x100.png');
+const totalLogo = require('../../../../assets/images/product_detail/Total_Atacado_logo_100x100.png');
+const feijao_carioca_1kg = require("../../../../assets/images/products_icons/feijao_carioca_1kg.png");
+
 
 // Dados de exemplo (Idealmente, buscaria isso com base no productId)
 const product: ProductDetails = {
@@ -59,16 +67,17 @@ const product: ProductDetails = {
   code: 'ki-2523',
   quantity: '1k',
   type: 'Feijão Comum',
-  image: 'https://via.placeholder.com/150?text=Feijao',
+  image: feijao_carioca_1kg,
 };
 
 const nearbyMarkets: MarketPrice[] = [
-  { id: 'm1', name: 'Assaí', price: '3,09', logo: 'https://via.placeholder.com/100x40?text=Assai' },
-  { id: 'm2', name: 'Atakarejo', price: '3,89', logo: 'https://via.placeholder.com/100x40?text=Atakarejo' },
-  { id: 'm3', name: 'GBarbosa', price: '5,09', logo: 'https://via.placeholder.com/100x40?text=GBarbosa' },
-  { id: 'm4', name: 'Extra', price: '5,09', logo: 'https://via.placeholder.com/100x40?text=Extra' },
-  { id: 'm5', name: 'Total Atacado', price: '7,09', logo: 'https://via.placeholder.com/100x40?text=Total' },
+  { id: 'm1', name: 'Assaí', price: '3,09', logo: assaiLogo },
+  { id: 'm2', name: 'Atakarejo', price: '3,89', logo: atakarejoLogo },
+  { id: 'm3', name: 'GBarbosa', price: '5,09', logo: gbarbosaLogo },
+  { id: 'm4', name: 'Extra', price: '5,09', logo: extraLogo },
+  { id: 'm5', name: 'Total Atacado', price: '7,09', logo: totalLogo },
 ];
+
 
 // Renomeie este componente para 'Page' ou use como default export em '(panel)/ProductDetail/page.tsx'
 const ProductDetailScreen: React.FC = () => {
@@ -88,7 +97,7 @@ const ProductDetailScreen: React.FC = () => {
 
   const renderMarketItem = ({ item }: { item: MarketPrice }) => (
     <View style={styles.marketCard}>
-      <Image source={{ uri: item.logo }} style={styles.marketLogo} resizeMode="contain" />
+      <Image source={item.logo} style={styles.marketLogo} resizeMode="contain" />
       <View style={styles.marketInfo}>
         <Text style={FONTS.price}>R$ {item.price}</Text>
       </View>
@@ -119,16 +128,13 @@ const ProductDetailScreen: React.FC = () => {
 
       {/* Detalhes do Produto */}
       <View style={styles.productDetailContainer}>
-        <Image source={{ uri: product.image }} style={styles.productImage} resizeMode="contain" />
+        <Image source={product.image} style={styles.productImage} resizeMode="contain" />
         <View style={styles.productInfo}>
           <Text style={FONTS.h1}>{product.name}</Text>
           <Text style={FONTS.caption}>Código: {product.code}</Text>
           <Text style={FONTS.caption}>Quantidade: {product.quantity}</Text>
           <Text style={FONTS.caption}>Tipo: {product.type}</Text>
         </View>
-        <TouchableOpacity style={styles.detailsArrow}>
-            <Ionicons name="chevron-forward" size={24} color={COLORS.darkGray} />
-        </TouchableOpacity>
       </View>
 
       {/* Lista de Mercados Próximos */}

@@ -45,8 +45,7 @@ const ForgotPasswordScreen: React.FC = () => {
 
     // --- Simulação do envio de e-mail ---
     console.log(`Simulando envio de e-mail de redefinição para: ${email}`);
-    // Aqui você integraria com seu backend para enviar o e-mail real
-    // --- Fim da Simulação ---
+    // adicioanr back end-
 
     setIsEmailSent(true); // Mostra a mensagem de confirmação
   };
@@ -139,12 +138,12 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     flexGrow: 1,
-    justifyContent: 'center', // Centraliza o conteúdo se for pouco
+    justifyContent: 'center', 
     paddingBottom: 40,
   },
   formContainer: {
     paddingHorizontal: 25,
-    paddingTop: 30, // Espaço abaixo do header
+    paddingTop: 30, 
   },
   instructionText: {
     ...FONTS.body,
@@ -196,14 +195,14 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-  // Estilos para confirmação
+  
   confirmationContainer: {
     alignItems: 'center',
     paddingVertical: 40,
     paddingHorizontal: 20,
   },
   confirmationTitle: {
-    ...FONTS.h2Dark, // Usando um estilo de título existente
+    ...FONTS.h2Dark, 
     color: COLORS.success,
     marginTop: 15,
     marginBottom: 10,

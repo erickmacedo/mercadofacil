@@ -15,6 +15,27 @@ import { useRouter, Stack, useLocalSearchParams } from 'expo-router';
 import COLORS from '@/constants/colors';
 import FONTS from '@/constants/fonts';
 
+const skol_lata = require("../../../../assets/images/products_icons/skol_lata.png");
+const heineken_lata = require("../../../../assets/images/products_icons/heineken_lata.png");
+const brahma_lata = require("../../../../assets/images/products_icons/brahma_lata.png");
+const antarctica_lata = require("../../../../assets/images/products_icons/antarctica_lata.png");
+const bohemia_lata = require("../../../../assets/images/products_icons/bohemia_lata.png");
+const itaipava_lata = require("../../../../assets/images/products_icons/itaipava_lata.png");
+const amstel_lata = require("../../../../assets/images/products_icons/amstel_lata.png");
+const budweiser_lata = require("../../../../assets/images/products_icons/budweiser_lata.png");
+const stella_artois_lata = require("../../../../assets/images/products_icons/stella_artois_lata.png");
+const corona_lata = require("../../../../assets/images/products_icons/corona_lata.png");
+const arroz_5kg = require("../../../../assets/images/products_icons/arroz_5kg.png");
+const feijao_carioca_1kg = require("../../../../assets/images/products_icons/feijao_carioca_1kg.png");
+const oleo_soja_900ml = require("../../../../assets/images/products_icons/oleo_soja_900ml.png");
+const acucar_refinado_1kg = require("../../../../assets/images/products_icons/acucar_refinado_1kg.png");
+const cafe_torrado_500g = require("../../../../assets/images/products_icons/cafe_torrado_500g.png");
+const sal_refinado_1kg = require("../../../../assets/images/products_icons/sal_refinado_1kg.png");
+const farinha_trigo_1kg = require("../../../../assets/images/products_icons/farinha_trigo_1kg.png");
+const macarrao_espaguete_500g = require("../../../../assets/images/products_icons/macarrao_espaguete_500g.png");
+const leite_integral_1l = require("../../../../assets/images/products_icons/leite_integral_1l.png");
+const ovos_brancos_duzia = require("../../../../assets/images/products_icons/ovos_brancos_duzia.png");
+
 // Tipagem para os dados de produto
 interface Product {
   id: string;
@@ -22,13 +43,13 @@ interface Product {
   price: string;
   priceValue: number; // Valor numérico para ordenação
   distance: number; // Distância em km para ordenação
-  image: string;
+  image: any;
 }
 
 // Tipos de ordenação
 type SortType = 'price-asc' | 'price-desc' | 'distance-asc' | null;
 
-const ProductDetail: React.FC = () => {
+const productList: React.FC = () => {
   const router = useRouter();
   const { listType } = useLocalSearchParams<{ listType: string }>();
   
@@ -53,31 +74,28 @@ const ProductDetail: React.FC = () => {
   
   // Dados de exemplo para produtos recomendados
   const recommendedProducts: Product[] = [
-    { id: '1', name: 'Cerveja Lata Skol', price: 'R$ 3,09', priceValue: 3.09, distance: 1.2, image: 'https://via.placeholder.com/100?text=Cerveja1' },
-    { id: '2', name: 'Cerveja Lata Heineken', price: 'R$ 5,49', priceValue: 5.49, distance: 0.8, image: 'https://via.placeholder.com/100?text=Cerveja2' },
-    { id: '3', name: 'Cerveja Lata Brahma', price: 'R$ 3,29', priceValue: 3.29, distance: 2.5, image: 'https://via.placeholder.com/100?text=Cerveja3' },
-    { id: '4', name: 'Cerveja Lata Antarctica', price: 'R$ 2,99', priceValue: 2.99, distance: 3.1, image: 'https://via.placeholder.com/100?text=Cerveja4' },
-    { id: '5', name: 'Cerveja Lata Bohemia', price: 'R$ 3,79', priceValue: 3.79, distance: 1.5, image: 'https://via.placeholder.com/100?text=Cerveja5' },
-    { id: '6', name: 'Cerveja Lata Itaipava', price: 'R$ 2,49', priceValue: 2.49, distance: 4.2, image: 'https://via.placeholder.com/100?text=Cerveja6' },
-    { id: '7', name: 'Cerveja Lata Amstel', price: 'R$ 4,19', priceValue: 4.19, distance: 0.5, image: 'https://via.placeholder.com/100?text=Cerveja7' },
-    { id: '8', name: 'Cerveja Lata Budweiser', price: 'R$ 4,99', priceValue: 4.99, distance: 1.9, image: 'https://via.placeholder.com/100?text=Cerveja8' },
-    { id: '9', name: 'Cerveja Lata Stella Artois', price: 'R$ 5,99', priceValue: 5.99, distance: 2.7, image: 'https://via.placeholder.com/100?text=Cerveja9' },
-    { id: '10', name: 'Cerveja Lata Corona', price: 'R$ 6,49', priceValue: 6.49, distance: 3.8, image: 'https://via.placeholder.com/100?text=Cerveja10' },
-  ];
+  { id: '1', name: 'Cerveja Lata Skol', price: 'R$ 3,09', priceValue: 3.09, distance: 1.2, image: skol_lata },
+  { id: '2', name: 'Cerveja Lata Heineken', price: 'R$ 5,49', priceValue: 5.49, distance: 0.8, image: heineken_lata },
+  { id: '3', name: 'Cerveja Lata Brahma', price: 'R$ 3,29', priceValue: 3.29, distance: 2.5, image: brahma_lata },
+  { id: '4', name: 'Cerveja Lata Antarctica', price: 'R$ 2,99', priceValue: 2.99, distance: 3.1, image: antarctica_lata },
+  { id: '5', name: 'Cerveja Lata Bohemia', price: 'R$ 3,79', priceValue: 3.79, distance: 1.5, image: bohemia_lata },
+  { id: '6', name: 'Cerveja Lata Itaipava', price: 'R$ 2,49', priceValue: 2.49, distance: 4.2, image: itaipava_lata },
+  { id: '7', name: 'Cerveja Lata Amstel', price: 'R$ 4,19', priceValue: 4.19, distance: 0.5, image: amstel_lata },
+  { id: '8', name: 'Cerveja Lata Budweiser', price: 'R$ 4,99', priceValue: 4.99, distance: 1.9, image: budweiser_lata },
+  { id: '9', name: 'Cerveja Lata Stella Artois', price: 'R$ 5,99', priceValue: 5.99, distance: 2.7, image: stella_artois_lata },
+  { id: '10', name: 'Cerveja Lata Corona', price: 'R$ 6,49', priceValue: 6.49, distance: 3.8, image: corona_lata },
+];
 
-  // Dados de exemplo para produtos da cesta básica
-  const basicBasketProducts: Product[] = [
-    { id: '11', name: 'Arroz Tipo 1 5kg', price: 'R$ 25,99', priceValue: 25.99, distance: 1.2, image: 'https://via.placeholder.com/100?text=Arroz' },
-    { id: '12', name: 'Feijão Carioca 1kg', price: 'R$ 8,49', priceValue: 8.49, distance: 0.8, image: 'https://via.placeholder.com/100?text=Feijao' },
-    { id: '13', name: 'Óleo de Soja 900ml', price: 'R$ 7,99', priceValue: 7.99, distance: 2.5, image: 'https://via.placeholder.com/100?text=Oleo' },
-    { id: '14', name: 'Açúcar Refinado 1kg', price: 'R$ 4,29', priceValue: 4.29, distance: 3.1, image: 'https://via.placeholder.com/100?text=Acucar' },
-    { id: '15', name: 'Café Torrado 500g', price: 'R$ 15,99', priceValue: 15.99, distance: 1.5, image: 'https://via.placeholder.com/100?text=Cafe' },
-    { id: '16', name: 'Sal Refinado 1kg', price: 'R$ 2,99', priceValue: 2.99, distance: 4.2, image: 'https://via.placeholder.com/100?text=Sal' },
-    { id: '17', name: 'Farinha de Trigo 1kg', price: 'R$ 5,49', priceValue: 5.49, distance: 0.5, image: 'https://via.placeholder.com/100?text=Farinha' },
-    { id: '18', name: 'Macarrão Espaguete 500g', price: 'R$ 3,99', priceValue: 3.99, distance: 1.9, image: 'https://via.placeholder.com/100?text=Macarrao' },
-    { id: '19', name: 'Leite Integral 1L', price: 'R$ 4,79', priceValue: 4.79, distance: 2.7, image: 'https://via.placeholder.com/100?text=Leite' },
-    { id: '20', name: 'Ovos Brancos (dúzia)', price: 'R$ 9,99', priceValue: 9.99, distance: 3.8, image: 'https://via.placeholder.com/100?text=Ovos' },
-  ];
+const basicBasketProducts: Product[] = [
+  { id: '11', name: 'Arroz Tipo 1 5kg', price: 'R$ 25,99', priceValue: 25.99, distance: 1.2, image: arroz_5kg },
+  { id: '12', name: 'Feijão Carioca 1kg', price: 'R$ 8,49', priceValue: 8.49, distance: 0.8, image: feijao_carioca_1kg },
+  { id: '13', name: 'Óleo de Soja 900ml', price: 'R$ 7,99', priceValue: 7.99, distance: 2.5, image: oleo_soja_900ml },
+  { id: '16', name: 'Sal Refinado 1kg', price: 'R$ 2,99', priceValue: 2.99, distance: 4.2, image: sal_refinado_1kg },
+  { id: '17', name: 'Farinha de Trigo 1kg', price: 'R$ 5,49', priceValue: 5.49, distance: 0.5, image: farinha_trigo_1kg },
+  { id: '18', name: 'Macarrão Espaguete 500g', price: 'R$ 3,99', priceValue: 3.99, distance: 1.9, image: macarrao_espaguete_500g },
+  { id: '19', name: 'Leite Integral 1L', price: 'R$ 4,79', priceValue: 4.79, distance: 2.7, image: leite_integral_1l },
+  { id: '20', name: 'Ovos Brancos (dúzia)', price: 'R$ 9,99', priceValue: 9.99, distance: 3.8, image: ovos_brancos_duzia },
+];
   
   // Função para selecionar os produtos com base no tipo de lista
   const getProductsByType = () => {
@@ -126,7 +144,7 @@ const ProductDetail: React.FC = () => {
       style={styles.productCard}
       onPress={() => router.push({ pathname: '/(panel)/ProductDetail/page', params: { productId: item.id } })}
     >
-      <Image source={{ uri: item.image }} style={styles.productImage} resizeMode="contain" />
+      <Image source={item.image} style={styles.productImage} resizeMode="contain" />
       <Text style={styles.productName} numberOfLines={2}>{item.name}</Text>
       <Text style={FONTS.price}>{item.price}</Text>
       <Text style={styles.distanceText}>{item.distance} km</Text>
@@ -320,8 +338,8 @@ const styles = StyleSheet.create({
     maxWidth: Dimensions.get('window').width / 2 - 20,
   },
   productImage: {
-    width: 80,
-    height: 80,
+    width: 100,
+    height: 100,
     marginBottom: 10,
   },
   productName: {
@@ -363,4 +381,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProductDetail;
+export default productList;

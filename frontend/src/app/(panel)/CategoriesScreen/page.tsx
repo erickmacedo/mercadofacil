@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { 
-  StyleSheet, 
-  View, 
-  Text, 
-  TextInput, 
-  TouchableOpacity, 
-  Image, 
-  ScrollView, 
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  ScrollView,
   FlatList,
   Dimensions
 } from 'react-native';
@@ -15,11 +15,38 @@ import { useRouter, Stack } from 'expo-router';
 import COLORS from '@/constants/colors';
 import FONTS from '@/constants/fonts';
 
+// Importe as imagens locais com o caminho corrigido
+// O caminho é ../../../../assets/images/categories_icons/ porque:
+// - page.tsx está em: mercadofacil/frontend/src/app/(panel)/CategoriesScreen/
+// - assets está em: mercadofacil/frontend/assets/
+// Para ir de CategoriesScreen/page.tsx até assets/, precisamos subir 4 níveis de diretório (CategoriesScreen, (panel), app, src)
+// e depois descer para assets/images/categories_icons/
+const acucar_doces = require('../../../../assets/images/categories_icons/acucar_doces.png');
+const alimentos_congelados = require('../../../../assets/images/categories_icons/alimentos_congelados.png');
+const aves = require('../../../../assets/images/categories_icons/aves.png');
+const bebidas_alcoolicas = require('../../../../assets/images/categories_icons/bebidas_alcoolicas.png');
+const bebidas = require('../../../../assets/images/categories_icons/bebidas.png');
+const biscoitos_snacks = require('../../../../assets/images/categories_icons/biscoitos_snacks.png');
+const cafe_cha_achocolatados = require('../../../../assets/images/categories_icons/cafe_cha_achocolatados.png');
+const carnes = require('../../../../assets/images/categories_icons/carnes.png');
+const farinha_fermento = require('../../../../assets/images/categories_icons/farinha_fermento.png');
+const frios_embutidos = require('../../../../assets/images/categories_icons/frios_embutidos.png');
+const graos_cereais = require('../../../../assets/images/categories_icons/graos_cereais.png');
+const higiene_pessoal = require('../../../../assets/images/categories_icons/higiene_pessoal.png');
+const hortifruti = require('../../../../assets/images/categories_icons/hortifruti.png');
+const laticinios = require('../../../../assets/images/categories_icons/laticinios.png');
+const massas = require('../../../../assets/images/categories_icons/massas.png');
+const molhos_temperos_condimentos = require('../../../../assets/images/categories_icons/molhos_temperos_condimentos.png');
+const oleos_azeites = require('../../../../assets/images/categories_icons/oleos_azeites.png');
+const padaria_confeitaria = require('../../../../assets/images/categories_icons/padaria_confeitaria.png');
+const peixes_frutos_do_mar = require('../../../../assets/images/categories_icons/peixes_frutos_do_mar.png');
+const produtos_limpeza = require('../../../../assets/images/categories_icons/produtos_limpeza.png');
+
 // Tipagem para os dados de categoria
 interface Categoria {
   id: string;
   nome: string;
-  imagem: string;
+  imagem: any; // Alterado para 'any' para aceitar o resultado de require()
 }
 
 const CategoriesScreen : React.FC = () => {
@@ -30,26 +57,26 @@ const CategoriesScreen : React.FC = () => {
   // NOTA: Esta seção contém dados mockados que devem ser substituídos pela integração com o backend
   
   const categorias: Categoria[] = [
-    { id: '1', nome: 'Hortifrúti', imagem: 'https://via.placeholder.com/100?text=Hortifruti' },
-    { id: '2', nome: 'Carnes', imagem: 'https://via.placeholder.com/100?text=Carnes' },
-    { id: '3', nome: 'Peixes e Frutos do Mar', imagem: 'https://via.placeholder.com/100?text=Peixes' },
-    { id: '4', nome: 'Aves', imagem: 'https://via.placeholder.com/100?text=Aves' },
-    { id: '5', nome: 'Padaria e Confeitaria', imagem: 'https://via.placeholder.com/100?text=Padaria' },
-    { id: '6', nome: 'Laticínios', imagem: 'https://via.placeholder.com/100?text=Laticinios' },
-    { id: '7', nome: 'Frios e Embutidos', imagem: 'https://via.placeholder.com/100?text=Frios' },
-    { id: '8', nome: 'Bebidas', imagem: 'https://via.placeholder.com/100?text=Bebidas' },
-    { id: '9', nome: 'Bebidas Alcoólicas', imagem: 'https://via.placeholder.com/100?text=Alcoolicas' },
-    { id: '10', nome: 'Grãos e Cereais', imagem: 'https://via.placeholder.com/100?text=Graos' },
-    { id: '11', nome: 'Massas', imagem: 'https://via.placeholder.com/100?text=Massas' },
-    { id: '12', nome: 'Biscoitos e Snacks', imagem: 'https://via.placeholder.com/100?text=Biscoitos' },
-    { id: '13', nome: 'Café, Chá e Achocolatados', imagem: 'https://via.placeholder.com/100?text=Cafe' },
-    { id: '14', nome: 'Açúcar e Doces', imagem: 'https://via.placeholder.com/100?text=Doces' },
-    { id: '15', nome: 'Farinha e Fermento', imagem: 'https://via.placeholder.com/100?text=Farinha' },
-    { id: '16', nome: 'Óleos e Azeites', imagem: 'https://via.placeholder.com/100?text=Oleos' },
-    { id: '17', nome: 'Molhos, Temperos e Condimentos', imagem: 'https://via.placeholder.com/100?text=Temperos' },
-    { id: '18', nome: 'Produtos de Limpeza', imagem: 'https://via.placeholder.com/100?text=Limpeza' },
-    { id: '19', nome: 'Higiene Pessoal', imagem: 'https://via.placeholder.com/100?text=Higiene' },
-    { id: '20', nome: 'Alimentos Congelados', imagem: 'https://via.placeholder.com/100?text=Congelados' },
+    { id: '1', nome: 'Hortifrúti', imagem: hortifruti },
+    { id: '2', nome: 'Carnes', imagem: carnes },
+    { id: '3', nome: 'Peixes e Frutos do Mar', imagem: peixes_frutos_do_mar },
+    { id: '4', nome: 'Aves', imagem: aves },
+    { id: '5', nome: 'Padaria e Confeitaria', imagem: padaria_confeitaria },
+    { id: '6', nome: 'Laticínios', imagem: laticinios },
+    { id: '7', nome: 'Frios e Embutidos', imagem: frios_embutidos },
+    { id: '8', nome: 'Bebidas', imagem: bebidas },
+    { id: '9', nome: 'Bebidas Alcoólicas', imagem: bebidas_alcoolicas },
+    { id: '10', nome: 'Grãos e Cereais', imagem: graos_cereais },
+    { id: '11', nome: 'Massas', imagem: massas },
+    { id: '12', nome: 'Biscoitos e Snacks', imagem: biscoitos_snacks },
+    { id: '13', nome: 'Café, Chá e Achocolatado', imagem: cafe_cha_achocolatados },
+    { id: '14', nome: 'Açúcar e Doces', imagem: acucar_doces },
+    { id: '15', nome: 'Farinha e Fermento', imagem: farinha_fermento },
+    { id: '16', nome: 'Óleos e Azeites', imagem: oleos_azeites },
+    { id: '17', nome: 'Molhos, Temperos e Condimentos', imagem: molhos_temperos_condimentos },
+    { id: '18', nome: 'Produtos de Limpeza', imagem: produtos_limpeza },
+    { id: '19', nome: 'Higiene Pessoal', imagem: higiene_pessoal },
+    { id: '20', nome: 'Alimentos Congelados', imagem: alimentos_congelados },
   ];
   
   // ==================== FIM: DADOS MOCKADOS (TEMPORÁRIO) ====================
@@ -75,7 +102,7 @@ const CategoriesScreen : React.FC = () => {
     >
       <View style={estilos.conteudoCategoria}>
         <Text style={estilos.nomeCategoria}>{item.nome}</Text>
-        <Image source={{ uri: item.imagem }} style={estilos.imagemCategoria} resizeMode="contain" />
+        <Image source={item.imagem} style={estilos.imagemCategoria} resizeMode="contain" />
       </View>
     </TouchableOpacity>
   );
@@ -220,3 +247,5 @@ const estilos = StyleSheet.create({
 });
 
 export default CategoriesScreen ;
+
+
