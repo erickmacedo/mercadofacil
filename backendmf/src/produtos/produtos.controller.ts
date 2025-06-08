@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { 
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ProdutosService } from './produtos.service';
 import { CreateProdutoDto } from './dto/create-produto.dto';
 import { UpdateProdutoDto } from './dto/update-produto.dto';
@@ -12,7 +20,7 @@ export class ProdutosController {
     return this.produtosService.create(createProdutoDto);
   }
 
-  @Get()
+  @Get('consultar')
   findAll() {
     return this.produtosService.findAll();
   }
