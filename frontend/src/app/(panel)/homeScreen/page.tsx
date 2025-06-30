@@ -96,7 +96,7 @@ const HomeScreen: React.FC = () => {
 
       {/* Ícones de Ação */}
       <View style={styles.actionIconsContainer}>
-        <Link href="/(panel)/ShoppingList/page" asChild>
+        <Link href="/(panel)/ListManager/page" asChild>
           <TouchableOpacity style={styles.actionIconBox}>
             <MaterialCommunityIcons name="format-list-checks" size={35} color={COLORS.primary} />
             <Text style={styles.actionIconText}>Lista de Compras</Text>
