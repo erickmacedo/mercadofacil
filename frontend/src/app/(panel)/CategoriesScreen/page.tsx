@@ -1,3 +1,5 @@
+'use client'; // É importante manter esta diretiva aqui
+
 import React, { useState } from 'react';
 import {
   StyleSheet,
@@ -6,21 +8,14 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
-  ScrollView,
   FlatList,
-  Dimensions
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter, Stack } from 'expo-router';
 import COLORS from '@/constants/colors';
 import FONTS from '@/constants/fonts';
 
-// Importe as imagens locais com o caminho corrigido
-// O caminho é ../../../../assets/images/categories_icons/ porque:
-// - page.tsx está em: mercadofacil/frontend/src/app/(panel)/CategoriesScreen/
-// - assets está em: mercadofacil/frontend/assets/
-// Para ir de CategoriesScreen/page.tsx até assets/, precisamos subir 4 níveis de diretório (CategoriesScreen, (panel), app, src)
-// e depois descer para assets/images/categories_icons/
+// ... (sua lista de imports de imagens continua a mesma)
 const acucar_doces = require('../../../../assets/images/categories_icons/acucar_doces.png');
 const alimentos_congelados = require('../../../../assets/images/categories_icons/alimentos_congelados.png');
 const aves = require('../../../../assets/images/categories_icons/aves.png');
@@ -42,20 +37,16 @@ const padaria_confeitaria = require('../../../../assets/images/categories_icons/
 const peixes_frutos_do_mar = require('../../../../assets/images/categories_icons/peixes_frutos_do_mar.png');
 const produtos_limpeza = require('../../../../assets/images/categories_icons/produtos_limpeza.png');
 
-// Tipagem para os dados de categoria
 interface Categoria {
   id: string;
   nome: string;
-  imagem: any; // Alterado para 'any' para aceitar o resultado de require()
+  imagem: any;
 }
 
-const CategoriesScreen : React.FC = () => {
+const CategoriesScreen: React.FC = () => {
   const router = useRouter();
   const [textoBusca, setTextoBusca] = useState('');
-  
-  // ==================== INÍCIO: DADOS MOCKADOS (TEMPORÁRIO) ====================
-  // NOTA: Esta seção contém dados mockados que devem ser substituídos pela integração com o backend
-  
+
   const categorias: Categoria[] = [
     { id: '1', nome: 'Hortifrúti', imagem: hortifruti },
     { id: '2', nome: 'Carnes', imagem: carnes },
@@ -78,26 +69,23 @@ const CategoriesScreen : React.FC = () => {
     { id: '19', nome: 'Higiene Pessoal', imagem: higiene_pessoal },
     { id: '20', nome: 'Alimentos Congelados', imagem: alimentos_congelados },
   ];
-  
-  // ==================== FIM: DADOS MOCKADOS (TEMPORÁRIO) ====================
-  
-  // Filtrar categorias com base no texto de busca
+
   const categoriasFiltradas = textoBusca.length > 0
-    ? categorias.filter(categoria => 
-        categoria.nome.toLowerCase().includes(textoBusca.toLowerCase())
-      )
+    ? categorias.filter(categoria =>
+      categoria.nome.toLowerCase().includes(textoBusca.toLowerCase())
+    )
     : categorias;
-  
-  // Calcular número de colunas com base na largura da tela
+
   const numeroColunas = 2;
-  
-  // Função para renderizar cada categoria
+
   const renderizarItemCategoria = ({ item }: { item: Categoria }) => (
-    <TouchableOpacity 
+    <TouchableOpacity
       style={estilos.itemCategoria}
-      onPress={() => router.push({ 
-        pathname: '/(panel)/productList/page', 
-        params: { listType: item.id, categoryName: item.nome } 
+      // --- ESTA É A LINHA CORRIGIDA ---
+      onPress={() => router.push({
+        pathname: '/(panel)/productList/page',
+        // Enviando o parâmetro com o nome correto: 'category'
+        params: { category: item.nome }
       })}
     >
       <View style={estilos.conteudoCategoria}>
@@ -109,8 +97,7 @@ const CategoriesScreen : React.FC = () => {
 
   return (
     <View style={estilos.container}>
-      {/* Configuração do Header */}
-      <Stack.Screen 
+      <Stack.Screen
         options={{
           headerShown: true,
           headerTitle: 'Categorias',
@@ -123,8 +110,7 @@ const CategoriesScreen : React.FC = () => {
           headerShadowVisible: false,
         }}
       />
-      
-      {/* Barra de Pesquisa */}
+
       <View style={estilos.containerBusca}>
         <Ionicons name="search" size={20} color={COLORS.darkGray} style={estilos.iconeBusca} />
         <TextInput
@@ -140,8 +126,7 @@ const CategoriesScreen : React.FC = () => {
           </TouchableOpacity>
         )}
       </View>
-      
-      {/* Lista de Categorias */}
+
       {categoriasFiltradas.length > 0 ? (
         <FlatList
           data={categoriasFiltradas}
@@ -162,6 +147,7 @@ const CategoriesScreen : React.FC = () => {
   );
 };
 
+// Seus estilos permanecem os mesmos
 const estilos = StyleSheet.create({
   container: {
     flex: 1,
@@ -246,6 +232,4 @@ const estilos = StyleSheet.create({
   },
 });
 
-export default CategoriesScreen ;
-
-
+export default CategoriesScreen;
